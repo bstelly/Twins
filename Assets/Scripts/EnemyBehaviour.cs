@@ -5,31 +5,26 @@ using UnityEngine.AI;
 
 namespace Luke
 {
-    public class Enemy : CharacterBehaviour
+    public class EnemyBehaviour : CharacterBehaviour
     {
-        [SerializeField]
         private string _name;
-        [SerializeField]
-        private float _health;
-        [SerializeField]
+        private float current_health = 100;
         private float _movementSpeed;
         public GameEvent onDeath;
         private NavMeshAgent navMesh;
-        private Player target;
+        public Player target;
 
         private void Start()
         {
             target = FindObjectOfType<Player>();
             navMesh = GetComponent<NavMeshAgent>();
             _name = "Enemy";
-            _health = 100;
-            _movementSpeed = 20;
         }
         private void Update()
         {
-            Move(target.transform.position);
+            navMesh.destination = target.transform.position;
 
-            if(_health <= 0)
+            if(current_health <= 0)
             {
                 Die();
             }
@@ -52,11 +47,11 @@ namespace Luke
         {
             get
             {
-                return _health;
+                return current_health;
             }
             set
             {
-                _health = value;
+                current_health = value;
             }
         }
 
@@ -76,12 +71,33 @@ namespace Luke
         public override void Die()
         {
             onDeath.Raise();
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         public override void Move(Vector3 Direction)
         {
-            Direction = navMesh.destination;
+        }
+
+        public override void TakeDamage(float amount)
+        {
+            if(current_health > 0)
+            {
+                ChangeHealth(-amount);
+            }
+        }
+
+        public override void ChangeHealth(float amount)
+        {
+            current_health += amount;
+        }
+
+        public void OnTriggerStay(Collider other)
+        {
+            if(other.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("Enemy is Attacking");
+                target.TakeDamage(20);
+            }
         }
     }
 }
