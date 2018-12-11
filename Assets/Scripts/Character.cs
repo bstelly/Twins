@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Character
+public abstract class CharacterBehaviour : MonoBehaviour
 {
     public abstract string Name { get; set; }
     public abstract float Health { get; set; }
