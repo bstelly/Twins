@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RaiseGameEventOnTriggerEnter : MonoBehaviour
 {
-    [SerializeField, ChuTools.ScriptVariable("GameEvent")]    
+    [SerializeField] 
     private GameEvent gameEvent;
     [Cinemachine.TagField]
     public string colliderTag;
