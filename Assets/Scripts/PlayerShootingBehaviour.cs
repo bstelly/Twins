@@ -8,9 +8,7 @@ namespace ZachScripts
     {
         public void FirePrimary(Vector3 direction)
         {
-            this.transform.LookAt(new Vector3(direction.x,0,direction.z));
-            Debug.Log("Rotating to " + direction);
-            //have the player face that direction
+            transform.forward = direction;
             //call the weapons fire and fire in the direction of the stick
         }
     }
