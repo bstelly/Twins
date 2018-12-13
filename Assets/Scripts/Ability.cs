@@ -7,6 +7,10 @@ namespace ZachScripts
     {
         public string name;
         public float cooldown;
-        public abstract void Activate();
+        public float charges;
+        public virtual void Activate()
+        {
+            Debug.Log(name + " activated");
+        }
     }
 }
