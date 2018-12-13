@@ -9,9 +9,7 @@ namespace Luke
     {
         [SerializeField]
         private string _name;
-        [SerializeField]
         private float current_health;
-        private float _movementSpeed;
         public GameEvent onDeath;
         private NavMeshAgent navMesh;
         public Player target;
@@ -63,27 +61,11 @@ namespace Luke
             }
         }
 
-        public override float MovementSpeed
-        {
-            get
-            {
-                return _movementSpeed;
-            }
-
-            set
-            {
-                _movementSpeed = value;
-            }
-        }
 
         public override void Die()
         {
             onDeath.Raise();
             Destroy(gameObject);
-        }
-
-        public override void Move(Vector3 Direction)
-        {
         }
 
         public override void TakeDamage(float amount)

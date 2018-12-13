@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 195501974737066494}
   - component: {fileID: 114214713675937138}
   - component: {fileID: 54722669289239048}
+  - component: {fileID: 114229329214502168}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -98,7 +99,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -125,8 +126,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3709a941629ad4647a36171d24c8939b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: 
   onDeath: {fileID: 11400000, guid: e1550d53139886640bd1daf768f53f7c, type: 2}
-  target: {fileID: 0}
+  target: {fileID: 114913275324970768, guid: 5de13d2855cebdf409ee5a255fb941ca, type: 2}
+--- !u!114 &114229329214502168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621380890306894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c54e36ef615344e89be328c286375b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 114214713675937138}
+  target: {fileID: 114913275324970768, guid: 5de13d2855cebdf409ee5a255fb941ca, type: 2}
 --- !u!195 &195501974737066494
 NavMeshAgent:
   m_ObjectHideFlags: 1

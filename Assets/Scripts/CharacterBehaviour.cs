@@ -10,8 +10,6 @@ namespace Luke
 
         public abstract float Health { get; set; }
 
-        public abstract float MovementSpeed { get; set; }
-        public abstract void Move(Vector3 Direction);
         public abstract void Die();
         public abstract void TakeDamage(float amount);
         public abstract void ChangeHealth(float amount);

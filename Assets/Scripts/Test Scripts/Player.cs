@@ -8,9 +8,21 @@ namespace Luke
     {
         private string _name;
         [SerializeField]
-        private float current_health = 3;
-        public float _movementSpeed;
+        private float current_health;
         public GameEvent onDeath;
+        private PlayerMovementBehaviour movement;
+
+        private void Awake()
+        {
+            current_health = 3;
+            movement = GetComponent<PlayerMovementBehaviour>();
+        }
+
+        private void Update()
+        {
+            movement.Update();
+        }
+
         public override string Name
         {
             get
@@ -32,18 +44,6 @@ namespace Luke
                 throw new System.NotImplementedException();
             }
         }
-        public override float MovementSpeed
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
 
         public override void ChangeHealth(float amount)
         {
@@ -54,11 +54,6 @@ namespace Luke
         {
             onDeath.Raise();
             Destroy(gameObject);
-        }
-
-        public override void Move(Vector3 Direction)
-        {
-            throw new System.NotImplementedException();
         }
 
         public override void TakeDamage(float amount)
