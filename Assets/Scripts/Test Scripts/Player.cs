@@ -7,8 +7,9 @@ namespace Luke
     public class Player : CharacterBehaviour
     {
         private string _name;
-        private float current_health = 100;
-        private float _movementSpeed;
+        [SerializeField]
+        private float current_health = 3;
+        public float _movementSpeed;
         public GameEvent onDeath;
         public override string Name
         {

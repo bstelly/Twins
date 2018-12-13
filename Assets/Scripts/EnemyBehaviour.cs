@@ -8,7 +8,7 @@ namespace Luke
     public class EnemyBehaviour : CharacterBehaviour
     {
         private string _name;
-        private float current_health = 100;
+        private float current_health = 5;
         private float _movementSpeed;
         public GameEvent onDeath;
         private NavMeshAgent navMesh;
@@ -22,7 +22,12 @@ namespace Luke
         }
         private void Update()
         {
-            navMesh.destination = target.transform.position;
+            var playerDistance = Vector3.Distance(target.transform.position, transform.position);
+
+            if(playerDistance < 100f)
+            {
+                navMesh.destination = target.transform.position;
+            }
 
             if(current_health <= 0)
             {
@@ -91,12 +96,13 @@ namespace Luke
             current_health += amount;
         }
 
-        public void OnTriggerStay(Collider other)
+        public void OnCollisionEnter(Collision other)
         {
             if(other.gameObject.CompareTag("Player"))
             {
                 Debug.Log("Enemy is Attacking");
-                target.TakeDamage(20);
+                target.TakeDamage(1);
+                Die();
             }
         }
     }
