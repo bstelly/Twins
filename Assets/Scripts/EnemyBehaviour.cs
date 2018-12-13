@@ -7,18 +7,21 @@ namespace Luke
 {
     public class EnemyBehaviour : CharacterBehaviour
     {
+        [SerializeField]
         private string _name;
-        private float current_health = 5;
+        [SerializeField]
+        private float current_health;
         private float _movementSpeed;
         public GameEvent onDeath;
         private NavMeshAgent navMesh;
         public Player target;
 
-        private void Start()
+        private void Awake()
         {
             target = FindObjectOfType<Player>();
             navMesh = GetComponent<NavMeshAgent>();
             _name = "Enemy";
+            current_health = 3;
         }
         private void Update()
         {
@@ -94,16 +97,6 @@ namespace Luke
         public override void ChangeHealth(float amount)
         {
             current_health += amount;
-        }
-
-        public void OnCollisionEnter(Collision other)
-        {
-            if(other.gameObject.CompareTag("Player"))
-            {
-                Debug.Log("Enemy is Attacking");
-                target.TakeDamage(1);
-                Die();
-            }
         }
     }
 }
